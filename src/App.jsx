@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import "./App.css";
+import CardList from "./Components/CardList";
 
 export default function App() {
   const [charList, setCharList] = useState([]);
@@ -16,9 +18,5 @@ export default function App() {
       });
   }, []);
 
-  return (
-    <>
-      <div>{charList ? charList.map((char) => <h4 key={char.id} id={char.id}>{char.name}</h4>) : <h1>Nada</h1>}</div>
-    </>
-  );
+  return <CardList>{charList}</CardList>;
 }
