@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
-export default function Card(props) {
-  const { id, imageUrl, title, text } = props;
+export default function Card({ id, imageUrl, title, text }) {
   return (
     <div id={id}>
       {imageUrl && <img src={imageUrl} />}

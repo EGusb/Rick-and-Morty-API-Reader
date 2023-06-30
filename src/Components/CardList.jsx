@@ -2,13 +2,11 @@
 import styles from "./styles.module.css";
 import Card from "./Card";
 
-export default function CardList(props) {
-  const { children } = props;
-
+export default function CardList({ children }) {
   return (
     <div className={styles.listContainer}>
-      {children.map((item) => {
-        return <Card key={item.id} id={item.id} imageUrl={item.image} title={item.name} text={item.type} />;
+      {children.map(({ id, imageUrl, title, text }) => {
+        return <Card key={id} id={id} imageUrl={imageUrl} title={title} text={text} />;
       })}
     </div>
   );
