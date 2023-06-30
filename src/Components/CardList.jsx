@@ -7,13 +7,9 @@ export default function CardList(props) {
 
   return (
     <div className={styles.listContainer}>
-      <div className={styles.list}>
-        {children.map((item) => {
-          return (
-            <Card key={item.id} id={item.id} imageUrl={item.image} firstLine={item.name} secondLine={item.species} />
-          );
-        })}
-      </div>
+      {children.map((item) => {
+        return <Card key={item.id} id={item.id} imageUrl={item.image} title={item.name} text={item.type} />;
+      })}
     </div>
   );
 }

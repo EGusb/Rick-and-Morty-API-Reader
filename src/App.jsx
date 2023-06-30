@@ -1,22 +1,28 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
 import "./App.css";
-import CardList from "./Components/CardList";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Screens/Home";
+import ItemList from "./Screens/ItemList";
+import ItemDetail from "./Screens/ItemDetail";
+import NotFound from "./Screens/NotFound";
+import Layout from "./Components/Layout";
 
 export default function App() {
-  const [charList, setCharList] = useState([]);
-
-  useEffect(() => {
-    fetch("https://rickandmortyapi.com/api/character")
-      .then((response) => response.json())
-      .then(({ results: characters }) => {
-        // Recorrer la lista de personajes y mostrar los datos en pantalla
-        setCharList(characters);
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
-  }, []);
-
-  return <CardList>{charList}</CardList>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/characters" element={<ItemList />} />
+          <Route path="/characters/:id" element={<ItemDetail />} />
+          <Route path="/episodes" element={<ItemList />} />
+          <Route path="/episodes/:id" element={<ItemDetail />} />
+          <Route path="/locations" element={<ItemList />} />
+          <Route path="/locations/:id" element={<ItemDetail />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }

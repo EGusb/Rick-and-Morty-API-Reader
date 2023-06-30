@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 
 export default function Card(props) {
-  const { id, imageUrl, firstLine, secondLine } = props;
+  const { id, imageUrl, title, text } = props;
   return (
     <div id={id}>
-      <img src={imageUrl} />
-      <h5>{firstLine}</h5>
-      <h5>{secondLine}</h5>
+      {imageUrl && <img src={imageUrl} />}
+      {title && <h4>{title}</h4>}
+      {text && <p>{text}</p>}
     </div>
   );
 }
