@@ -18,7 +18,15 @@ export default function ItemList() {
     fetch(req.url)
       .then((response) => response.json())
       .then(({ results }) => {
-        setItems(results);
+        const newObjs = results.map((obj) => {
+          return {
+            id: obj.id,
+            imageUrl: obj.image,
+            title: obj.name,
+            text: obj.species || obj.type || obj.dimension || obj.episode,
+          };
+        });
+        setItems(newObjs);
       })
       .catch((error) => {
         console.log("Error:", error);
