@@ -14,8 +14,8 @@ export default function ItemList() {
   const req = location in PATHS && { path: location, url: PATHS[location] };
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    fetch(req.url)
+  async function getData() {
+    await fetch(req.url)
       .then((response) => response.json())
       .then(({ results }) => {
         const newObjs = results.map((obj) => {
@@ -31,7 +31,9 @@ export default function ItemList() {
       .catch((error) => {
         console.log("Error:", error);
       });
-  }, [req.url]);
+  }
+
+  useEffect(() => getData(), [req.url]);
 
   return <CardList>{items}</CardList>;
 }
